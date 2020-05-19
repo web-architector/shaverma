@@ -1,0 +1,15 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+.sass-cache
+
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+.idea/
+build/
+.git
+

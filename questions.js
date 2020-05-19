@@ -4,11 +4,11 @@ const questions = [
         answers: [
             {
                 title: 'Стандарт',
-                img: './image/burger.png'
+                url: './img/burger.png'
             },
             {
                 title: 'Черный',
-                img: './image/burgerBlack.png'
+                url: './img/burgerBlack.png'
             }
         ],
         type: 'radio'
@@ -18,15 +18,15 @@ const questions = [
         answers: [
             {
                 title: 'Курица',
-                img: './image/chickenMeat.png'
+                url: './img/chickenMeat.png'
             },
             {
                 title: 'Говядина',
-                img: './image/beefMeat.png'
+                url: './img/beefMeat.png'
             },
             {
                 title: 'Свинина',
-                img: './image/porkMeat.png'
+                url: './img/porkMeat.png'
             }
         ],
         type: 'radio'
@@ -36,19 +36,19 @@ const questions = [
         answers: [
             {
                 title: 'Помидор',
-                img: './image/tomato.png'
+                url: './img/tomato.png'
             },
             {
                 title: 'Огурец',
-                img: './image/cucumber.png'
+                url: './img/cucumber.png'
             },
             {
                 title: 'Салат',
-                img: './image/salad.png'
+                url: './img/salad.png'
             },
             {
                 title: 'Лук',
-                img: './image/onion.png'
+                url: './img/onion.png'
             }
         ],
         type: 'checkbox'
@@ -58,17 +58,39 @@ const questions = [
         answers: [
             {
                 title: 'Чесночный',
-                img: './image/sauce1.png'
+                url: './img/sauce1.png'
             },
             {
                 title: 'Томатный',
-                img: './image/sauce2.png'
+                url: './img/sauce2.png'
             },
             {
                 title: 'Горчичный',
-                img: './image/sauce3.png'
+                url: './img/sauce3.png'
             }
         ],
         type: 'radio'
     }
 ];
+
+const obj = {}
+
+const getData = () => {
+    formAnswers.textContent = 'LOAD';
+
+    setTimeout(() => {
+        fetch('http://localhost:81/Quiz__intens/db.json')
+            .then(res => res.json())
+            .then(obj => playTest(obj.questions))
+    }, 2000);
+}
+
+const obj = {};
+
+const inputs = [...formAnswers.elements]
+    .filter(elem => elem.checked)
+
+inputs.forEach((elem, index) => {
+    obj[`${index}_${questions[numberQuestion].question}`] = elem.value;
+})
+finalAnswers.push(obj)
